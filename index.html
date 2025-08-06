@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Quiz - Testez vos connaissances!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="start-screen">
+        <h1>Manga Quiz</h1>
+        <button onclick="startQuiz()">Commencer</button>
+    </div>
+
+    <div class="manga-container" style="display:none;">
+        <h1>Manga Quiz</h1>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="quiz-question" id="question">Chargement...</div>
+        <div class="quiz-options" id="options"></div>
+
+        <img src="images/character.png" class="manga-character" alt="Manga">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
