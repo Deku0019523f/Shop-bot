@@ -22,89 +22,39 @@
     <nav class="sidebar">
       <h2 class="sidebar-title">Menu</h2>
       <ul class="nav-list">
-        <li class="nav-item" data-target="session">Session</li>
-        <li class="nav-item" data-target="deploy">Déploiement</li>
-        <li class="nav-item" data-target="faq">FAQ</li>
-        <li class="nav-item" data-target="envvars">Variables d'env.</li>
-        <li class="nav-item" data-target="plugins">Plugins</li>
-        <li class="nav-item" data-target="profile">Photo de profil</li>
+        <!-- Only keep the Session navigation item -->
+        <li class="nav-item active" data-target="session">Session</li>
       </ul>
     </nav>
 
     <!-- Main content area -->
     <main class="content">
-      <!-- Welcome message displayed by default -->
-      <section id="welcome" class="section active">
-        <h1>Bienvenue</h1>
-        <p>Sélectionnez un élément du menu pour commencer.</p>
-      </section>
-
-      <!-- Session section -->
-      <section id="session" class="section">
+      <!-- Session section with WhatsApp connection flow -->
+      <section id="session" class="section active">
         <h1>Session</h1>
-        <p>Dans cette section, vous pouvez gérer et visualiser vos sessions en cours. Utilisez cet espace pour suivre les activités et les statuts des sessions enregistrées.</p>
-      </section>
-
-      <!-- Deploy section -->
-      <section id="deploy" class="section">
-        <h1>Déploiement</h1>
-        <p>Préparez et lancez vos déploiements directement depuis cette interface. Configurez vos paramètres et déclenchez un déploiement en un clic.</p>
-      </section>
-
-      <!-- FAQ section -->
-      <section id="faq" class="section">
-        <h1>Foire aux questions</h1>
-        <h2>Que puis-je faire ici&nbsp;?</h2>
-        <p>Ce site est une démonstration inspirée de l'interface Levanter. Chaque section du menu vous présente une fonctionnalité différente, comme la gestion de session ou le déploiement.</p>
-        <h2>Comment utiliser le menu&nbsp;?</h2>
-        <p>Cliquez simplement sur un élément du menu à gauche. Le contenu correspondant s'affichera ici à droite.</p>
-      </section>
-
-      <!-- Env vars section -->
-      <section id="envvars" class="section">
-        <h1>Variables d'environnement</h1>
-        <p>Affichez et gérez vos variables d'environnement de manière sécurisée. Vous pouvez ajouter, modifier et supprimer des variables selon vos besoins.</p>
-        <table class="env-table">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Valeur</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>API_KEY</td>
-              <td>••••••••••</td>
-              <td><button disabled>Modifier</button></td>
-            </tr>
-            <tr>
-              <td>DATABASE_URL</td>
-              <td>••••••••••</td>
-              <td><button disabled>Modifier</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="note">Les actions sont désactivées dans cette version de démonstration.</p>
-      </section>
-
-      <!-- Plugins section -->
-      <section id="plugins" class="section">
-        <h1>Plugins</h1>
-        <p>Découvrez les plugins disponibles et leur état d'activation. Cette section permettrait de gérer les extensions et d'ajouter de nouvelles fonctionnalités.</p>
-        <ul class="plugin-list">
-          <li><strong>Plugin A</strong> — activé</li>
-          <li><strong>Plugin B</strong> — désactivé</li>
-          <li><strong>Plugin C</strong> — activé</li>
-        </ul>
-      </section>
-
-      <!-- Profile Picture section -->
-      <section id="profile" class="section">
-        <h1>Photo de profil</h1>
-        <p>Ajoutez ou modifiez votre photo de profil. Cliquez sur le bouton ci-dessous pour choisir une nouvelle image.</p>
-        <input type="file" id="fileInput" accept="image/*">
-        <div class="preview" id="preview"></div>
+        <!-- Card containing the WhatsApp connection steps -->
+        <div class="session-card">
+          <!-- Step 1: phone number input -->
+          <div class="phone-step step active" id="phone-step">
+            <h2>Entrez votre numéro WhatsApp</h2>
+            <input type="tel" id="phoneInput" class="text-input" placeholder="+22501234567">
+            <button id="connectBtn" class="primary-btn">Se connecter</button>
+          </div>
+          <!-- Step 2: pairing code display -->
+          <div class="code-step step" id="code-step">
+            <h2>Code d'appairage</h2>
+            <div id="pairingCode" class="pairing-code">----</div>
+            <p>Entrez ce code sur votre appareil pour finaliser la connexion.</p>
+            <button id="confirmCodeBtn" class="primary-btn">Confirmer</button>
+          </div>
+          <!-- Step 3: session ID display -->
+          <div class="session-id-step step" id="session-id-step">
+            <h2>Session établie</h2>
+            <p>Votre identifiant de session est&nbsp;:</p>
+            <div id="sessionId" class="session-id">Deku225_sessionid</div>
+            <p class="whatsapp-note">Ce code a été envoyé à votre compte WhatsApp.</p>
+          </div>
+        </div>
       </section>
     </main>
   </div>

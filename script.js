@@ -11,29 +11,21 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Navigation handling (kept for extensibility, though only one item exists)
   const navItems = document.querySelectorAll('.nav-item');
   const sections = document.querySelectorAll('.section');
-  const preview = document.getElementById('preview');
-  const fileInput = document.getElementById('fileInput');
 
-  // Show the selected section and hide others
   function showSection(targetId) {
     sections.forEach(section => {
-      if (section.id === targetId) {
-        section.classList.add('active');
-      } else {
-        section.classList.remove('active');
-      }
+      section.classList.toggle('active', section.id === targetId);
     });
   }
 
-  // Update active class on sidebar items
   function updateActiveNav(el) {
     navItems.forEach(item => item.classList.remove('active'));
     if (el) el.classList.add('active');
   }
 
-  // Event listeners for navigation items
   navItems.forEach(item => {
     item.addEventListener('click', () => {
       const target = item.getAttribute('data-target');
@@ -42,21 +34,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // File input change handler for profile picture preview
-  if (fileInput) {
-    fileInput.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      if (!file) {
-        preview.style.backgroundImage = '';
-        preview.textContent = 'Aucun fichier sélectionné';
+  // Elements for the session flow
+  const phoneStep = document.getElementById('phone-step');
+  const codeStep = document.getElementById('code-step');
+  const sessionIdStep = document.getElementById('session-id-step');
+  const phoneInput = document.getElementById('phoneInput');
+  const connectBtn = document.getElementById('connectBtn');
+  const confirmCodeBtn = document.getElementById('confirmCodeBtn');
+  const pairingCodeElement = document.getElementById('pairingCode');
+  const sessionIdElement = document.getElementById('sessionId');
+
+  // Helper to generate a random pairing code (e.g., 4 letters and 4 digits)
+  function generatePairingCode() {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const digits = '0123456789';
+    let codeLetters = '';
+    for (let i = 0; i < 4; i++) {
+      codeLetters += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+    let codeDigits = '';
+    for (let i = 0; i < 4; i++) {
+      codeDigits += digits.charAt(Math.floor(Math.random() * digits.length));
+    }
+    return `${codeLetters}-${codeDigits}`;
+  }
+
+  // Connect button handler
+  if (connectBtn) {
+    connectBtn.addEventListener('click', () => {
+      const phone = phoneInput.value.trim();
+      if (!phone) {
+        alert('Veuillez saisir votre numéro WhatsApp.');
         return;
       }
-      const reader = new FileReader();
-      reader.onload = () => {
-        preview.style.backgroundImage = `url(${reader.result})`;
-        preview.textContent = '';
-      };
-      reader.readAsDataURL(file);
+      // Generate and display pairing code
+      const code = generatePairingCode();
+      pairingCodeElement.textContent = code;
+      // Transition to code step
+      phoneStep.classList.remove('active');
+      codeStep.classList.add('active');
+    });
+  }
+
+  // Confirm code button handler
+  if (confirmCodeBtn) {
+    confirmCodeBtn.addEventListener('click', () => {
+      // In a real application, here you would verify the code via backend
+      // For this demo we simply show the session ID
+      const sessionId = 'Deku225_sessionid';
+      sessionIdElement.textContent = sessionId;
+      codeStep.classList.remove('active');
+      sessionIdStep.classList.add('active');
     });
   }
 });
