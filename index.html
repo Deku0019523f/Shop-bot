@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Levanter&nbsp;Clone</title>
+  <!-- Link to the site stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Fallback styles in case external CSS fails to load */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Sidebar navigation -->
+    <nav class="sidebar">
+      <h2 class="sidebar-title">Menu</h2>
+      <ul class="nav-list">
+        <li class="nav-item" data-target="session">Session</li>
+        <li class="nav-item" data-target="deploy">Déploiement</li>
+        <li class="nav-item" data-target="faq">FAQ</li>
+        <li class="nav-item" data-target="envvars">Variables d'env.</li>
+        <li class="nav-item" data-target="plugins">Plugins</li>
+        <li class="nav-item" data-target="profile">Photo de profil</li>
+      </ul>
+    </nav>
+
+    <!-- Main content area -->
+    <main class="content">
+      <!-- Welcome message displayed by default -->
+      <section id="welcome" class="section active">
+        <h1>Bienvenue</h1>
+        <p>Sélectionnez un élément du menu pour commencer.</p>
+      </section>
+
+      <!-- Session section -->
+      <section id="session" class="section">
+        <h1>Session</h1>
+        <p>Dans cette section, vous pouvez gérer et visualiser vos sessions en cours. Utilisez cet espace pour suivre les activités et les statuts des sessions enregistrées.</p>
+      </section>
+
+      <!-- Deploy section -->
+      <section id="deploy" class="section">
+        <h1>Déploiement</h1>
+        <p>Préparez et lancez vos déploiements directement depuis cette interface. Configurez vos paramètres et déclenchez un déploiement en un clic.</p>
+      </section>
+
+      <!-- FAQ section -->
+      <section id="faq" class="section">
+        <h1>Foire aux questions</h1>
+        <h2>Que puis-je faire ici&nbsp;?</h2>
+        <p>Ce site est une démonstration inspirée de l'interface Levanter. Chaque section du menu vous présente une fonctionnalité différente, comme la gestion de session ou le déploiement.</p>
+        <h2>Comment utiliser le menu&nbsp;?</h2>
+        <p>Cliquez simplement sur un élément du menu à gauche. Le contenu correspondant s'affichera ici à droite.</p>
+      </section>
+
+      <!-- Env vars section -->
+      <section id="envvars" class="section">
+        <h1>Variables d'environnement</h1>
+        <p>Affichez et gérez vos variables d'environnement de manière sécurisée. Vous pouvez ajouter, modifier et supprimer des variables selon vos besoins.</p>
+        <table class="env-table">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Valeur</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>API_KEY</td>
+              <td>••••••••••</td>
+              <td><button disabled>Modifier</button></td>
+            </tr>
+            <tr>
+              <td>DATABASE_URL</td>
+              <td>••••••••••</td>
+              <td><button disabled>Modifier</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">Les actions sont désactivées dans cette version de démonstration.</p>
+      </section>
+
+      <!-- Plugins section -->
+      <section id="plugins" class="section">
+        <h1>Plugins</h1>
+        <p>Découvrez les plugins disponibles et leur état d'activation. Cette section permettrait de gérer les extensions et d'ajouter de nouvelles fonctionnalités.</p>
+        <ul class="plugin-list">
+          <li><strong>Plugin A</strong> — activé</li>
+          <li><strong>Plugin B</strong> — désactivé</li>
+          <li><strong>Plugin C</strong> — activé</li>
+        </ul>
+      </section>
+
+      <!-- Profile Picture section -->
+      <section id="profile" class="section">
+        <h1>Photo de profil</h1>
+        <p>Ajoutez ou modifiez votre photo de profil. Cliquez sur le bouton ci-dessous pour choisir une nouvelle image.</p>
+        <input type="file" id="fileInput" accept="image/*">
+        <div class="preview" id="preview"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript for dynamic navigation -->
+  <script src="script.js"></script>
+</body>
+</html>
